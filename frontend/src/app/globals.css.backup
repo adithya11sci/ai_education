@@ -1,0 +1,283 @@
+@import "tailwindcss";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+**Making the web accessible for everyone** 🌐♿---- Enhanced dyslexia support- Better visual indicators- Improved speech recognition- Language translations- Additional voice commandsWe welcome contributions to improve accessibility! Focus areas:## Contributing5. Contact support team4. Clear browser cache3. Try refreshing the page2. Ensure microphone permissions are granted1. Check browser compatibilityFor issues or feature requests related to voice navigation and accessibility:## Support- [ ] Personalized accessibility profiles- [ ] Voice-controlled forms- [ ] Reading mode for articles- [ ] Screen reader integration- [ ] Gesture controls- [ ] Custom voice commands- [ ] Multiple language support## Future Enhancements- **Full Control**: Disable voice features anytime with "stop listening" or toggle button- **No Recording**: Speech is not recorded or transmitted to servers- **No Data Storage**: Voice commands are processed locally in your browser- **Microphone Access**: Only active when you click the microphone button## Privacy & Security- **No Response**: Refresh page and try again- **Commands Not Working**: Speak clearly and check help menu- **Not Listening**: Click microphone button and grant permissions- **Not Hearing**: Check volume and enable audio### Troubleshooting4. **Use Dyslexia Font**: Enable for easier reading3. **Adjust Settings**: Customize font size and contrast2. **Check Location**: Use "where am I" if lost1. **Start with Help**: Say "help" to see all commands### Accessibility Tips4. **Natural Language**: Use conversational phrases3. **Wait for Feedback**: Let the system confirm before next command2. **Be Quiet**: Minimize background noise1. **Speak Clearly**: Use a normal speaking pace### Speaking Tips## Tips for Best Experience- Disable: `"stop listening"`, `"disable voice"`, `"turn off"`- Close Help: `"close help"`, `"hide help"`- Read Commands: `"read commands"`, `"list commands"`, `"tell me commands"`- Help: `"help"`, `"show help"`, `"what can you do"`, `"commands"`- Location: `"where am i"`, `"current page"`, `"what page"`#### Utility Commands- Scroll Down: `"scroll down"`, `"scroll to bottom"`, `"go to bottom"`- Scroll Up: `"scroll up"`, `"scroll to top"`, `"go to top"`- Refresh: `"refresh"`, `"reload page"`, `"reload"`- Back: `"go back"`, `"back"`, `"previous page"`#### Browser Actions- Home: `"go home"`, `"home page"`, `"go to home"`- Collaborate: `"go to collaborate"`, `"open collaborate"`, `"collaborate"`- Interview: `"go to interview"`, `"open interview"`, `"interview"`- Arena: `"go to arena"`, `"open arena"`, `"arena"`- Roadmap: `"go to roadmap"`, `"open roadmap"`, `"roadmap"`- Career: `"go to career"`, `"open career"`, `"career"`, `"jobs"`- Learn: `"go to learn"`, `"open learn"`, `"learning"`, `"courses"`- Network: `"go to network"`, `"open network"`, `"network"`, `"connections"`- Exams: `"go to exams"`, `"open exams"`, `"exams"`, `"test"`- Notes: `"go to notes"`, `"open notes"`, `"notes"`- Dashboard: `"go to dashboard"`, `"open dashboard"`, `"dashboard"`#### Navigation Commands### Voice Commands List4. **useVoiceAccessibility**: Custom hook for voice features3. **VoiceAccessibilityContext**: Global accessibility state2. **AccessibilityPanel**: Settings and configuration1. **VoiceNavigator**: Main voice command interface### Components- **OpenDyslexic Font**: Dyslexia-friendly typography- **Tailwind CSS**: Styling- **TypeScript**: Type-safe development- **Next.js 15**: React framework- **Web Speech API**: For speech recognition and synthesis### Technologies Used## Technical Details- **Audio Playback**: Required for text-to-speech feedback- **Microphone Access**: Required for voice commands### Required Permissions- ❌ **Internet Explorer** (not supported)- ⚠️ **Firefox** (limited support for speech recognition)- ✅ **Safari** (macOS/iOS)- ✅ **Microsoft Edge**- ✅ **Google Chrome** (recommended)### Supported Browsers## Browser Compatibility- **Escape**: Close modals and help screens- **Enter/Space**: Activate focused elements- **Tab**: Navigate through interactive elements### Keyboard Shortcuts   - **High Contrast**: Increases color contrast   - **Font Size**: Adjust text size using A- and A+ buttons   - **Dyslexia-Friendly Font**: Enables OpenDyslexic font2. Toggle features:1. Click the **settings button** (purple gear icon) in the top-right corner### Accessibility Settings```"Refresh"             → Reloads current page"Go back"             → Returns to previous page"Scroll to top"       → Scrolls to top of page"Help"                → Shows all available commands"Where am I"          → Tells current page location"Go to exams"         → Opens exams page"Open notes"          → Opens notes page"Go to dashboard"      → Navigates to dashboard```### Voice Command Examples3. Start speaking your commands clearly2. Grant microphone permissions when prompted1. Click the **microphone button** (blue circle) in the bottom-right corner### Starting Voice Navigation## How to Use- **Visual Feedback**: On-screen confirmation of commands- **Real-time Transcription**: See what the system heard- **Text-to-Speech**: All actions are announced verbally### 🔊 Audio Feedback- **Focus Indicators**: Clear visual focus for keyboard navigation- **High Contrast Mode**: Enhanced color contrast for better visibility- **Font Size Control**: Adjust text size from 12px to 24px### 👁️ Visual Accessibility- **Clear Typography**: Improved word spacing for better readability- **Increased Spacing**: Enhanced line height and letter spacing- **OpenDyslexic Font**: Specially designed font that's easier to read for people with dyslexia### 🔤 Dyslexia Support- **Read Commands**: "read commands" - reads available commands aloud- **Help**: "help" or "show help" - displays all available commands- **Location**: "where am I" - tells you your current page- **Browser Actions**: "go back", "refresh", "reload"- **Scrolling**: "scroll up", "scroll down", "go to top", "go to bottom"- **Navigation**: Navigate to any page using voice (e.g., "go to dashboard", "open notes")### 🎤 Voice Commands## FeaturesThe Voice Navigator is a comprehensive accessibility feature designed to help users with dyslexia and other visual or motor impairments navigate the website using voice commands.## Overview:root {
+  --background: #050505;
+  --foreground: #ededed;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom Scroll Animations */
+.scroll-anim {
+  transition:
+    opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-anim.visible {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* 3D Utilities */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* High Contrast Mode */
+body.high-contrast {
+  --background: #000000;
+  --foreground: #ffffff;
+  background: #000000 !important;
+  color: #ffffff !important;
+}
+
+body.high-contrast a {
+  color: #ffff00 !important;
+  text-decoration: underline;
+}
+
+body.high-contrast button {
+  border: 2px solid #ffffff !important;
+}
+
+body.high-contrast input,
+body.high-contrast textarea,
+body.high-contrast select {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border: 2px solid #ffffff !important;
+}
+
+/* Accessibility Focus Styles */
+*:focus-visible {
+  outline: 3px solid #4a90e2;
+  outline-offset: 2px;
+}
+
+/* Dyslexia-Friendly Styles */
+body.dyslexia-mode {
+  line-height: 1.8;
+  letter-spacing: 0.05em;
+  word-spacing: 0.16em;
+}
+
+body.dyslexia-mode p {
+  margin-bottom: 1.5em;
+}
+
+body.dyslexia-mode h1,
+body.dyslexia-mode h2,
+body.dyslexia-mode h3,
+body.dyslexia-mode h4,
+body.dyslexia-mode h5,
+body.dyslexia-mode h6 {
+  font-weight: 700;
+  margin-bottom: 0.75em;
+}

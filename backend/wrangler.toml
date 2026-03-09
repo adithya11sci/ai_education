@@ -1,0 +1,27 @@
+name = "backend"
+main = "src/index.ts"
+compatibility_date = "2024-04-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Durable Objects bindings
+[durable_objects]
+bindings = [
+  { name = "CHAT_ROOM", class_name = "ChatRoom" },
+  { name = "CALL_ROOM", class_name = "CallRoom" }
+]
+
+# Durable Objects migrations
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["ChatRoom", "CallRoom"]
+
+# Environment variables (set these in Cloudflare dashboard or via wrangler secret)
+[vars]
+LIVEKIT_WS_URL = "wss://audiovideo-fqutjw7i.livekit.cloud"
+API_URL = "https://optimus-be.kodliebe.me"
+FRONTEND_URL = "https://optimus.kodliebe.me"
+
+# Secrets (use: wrangler secret put <SECRET_NAME>)
+# LIVEKIT_API_KEY - Set via: wrangler secret put LIVEKIT_API_KEY
+# LIVEKIT_API_SECRET - Set via: wrangler secret put LIVEKIT_API_SECRET
+# DATABASE_URL - Set via: wrangler secret put DATABASE_URL

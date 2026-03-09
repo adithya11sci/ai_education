@@ -1,0 +1,5 @@
+{
+  "name": "optimus-party",
+  "main": "party/server.ts",
+  "compatibilityDate": "2025-01-29"
+}

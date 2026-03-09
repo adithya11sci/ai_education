@@ -1,0 +1,464 @@
+{
+  "info": {
+    "name": "Messaging and Calls API",
+    "description": "Complete API collection for testing messaging, group chats, calls, and group calls",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8787",
+      "type": "string"
+    },
+    {
+      "key": "userId1",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "userId2",
+      "value": "2",
+      "type": "string"
+    },
+    {
+      "key": "groupId",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "callId",
+      "value": "1",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Create User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Alice\",\n  \"email\": \"alice@example.com\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users",
+              "host": ["{{baseUrl}}"],
+              "path": ["users"]
+            }
+          }
+        },
+        {
+          "name": "Get All Users",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/users",
+              "host": ["{{baseUrl}}"],
+              "path": ["users"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Direct Messages",
+      "item": [
+        {
+          "name": "Send Direct Message",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"senderId\": {{userId1}},\n  \"recipientId\": {{userId2}},\n  \"content\": \"Hello!\",\n  \"type\": \"text\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/messages/direct",
+              "host": ["{{baseUrl}}"],
+              "path": ["messages", "direct"]
+            }
+          }
+        },
+        {
+          "name": "Get Direct Messages",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/messages/direct/{{userId2}}?currentUserId={{userId1}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["messages", "direct", "{{userId2}}"],
+              "query": [
+                {
+                  "key": "currentUserId",
+                  "value": "{{userId1}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Conversations",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/messages/conversations?userId={{userId1}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["messages", "conversations"],
+              "query": [
+                {
+                  "key": "userId",
+                  "value": "{{userId1}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Message",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/messages/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["messages", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Group Chats",
+      "item": [
+        {
+          "name": "Create Group",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"createdBy\": {{userId1}},\n  \"name\": \"Team Chat\",\n  \"description\": \"Team discussion\",\n  \"memberIds\": [{{userId2}}, 3, 4]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/groups",
+              "host": ["{{baseUrl}}"],
+              "path": ["groups"]
+            }
+          }
+        },
+        {
+          "name": "Get Group",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/groups/{{groupId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["groups", "{{groupId}}"]
+            }
+          }
+        },
+        {
+          "name": "Update Group",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Team Chat - Updated\",\n  \"description\": \"Updated description\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/groups/{{groupId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["groups", "{{groupId}}"]
+            }
+          }
+        },
+        {
+          "name": "Get Group Members",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/groups/{{groupId}}/members",
+              "host": ["{{baseUrl}}"],
+              "path": ["groups", "{{groupId}}", "members"]
+            }
+          }
+        },
+        {
+          "name": "Add Members",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userIds\": [5]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/groups/{{groupId}}/members",
+              "host": ["{{baseUrl}}"],
+              "path": ["groups", "{{groupId}}", "members"]
+            }
+          }
+        },
+        {
+          "name": "Update Member Role",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"role\": \"admin\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/groups/{{groupId}}/members/{{userId2}}/role",
+              "host": ["{{baseUrl}}"],
+              "path": [
+                "groups",
+                "{{groupId}}",
+                "members",
+                "{{userId2}}",
+                "role"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Remove Member",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/groups/{{groupId}}/members/3",
+              "host": ["{{baseUrl}}"],
+              "path": ["groups", "{{groupId}}", "members", "3"]
+            }
+          }
+        },
+        {
+          "name": "Leave Group",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": {{userId2}}\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/groups/{{groupId}}/leave",
+              "host": ["{{baseUrl}}"],
+              "path": ["groups", "{{groupId}}", "leave"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Group Messages",
+      "item": [
+        {
+          "name": "Send Group Message",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"senderId\": {{userId1}},\n  \"groupChatId\": {{groupId}},\n  \"content\": \"Hello team!\",\n  \"type\": \"text\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/messages/group",
+              "host": ["{{baseUrl}}"],
+              "path": ["messages", "group"]
+            }
+          }
+        },
+        {
+          "name": "Get Group Messages",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/messages/group/{{groupId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["messages", "group", "{{groupId}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Calls",
+      "item": [
+        {
+          "name": "Initiate Direct Call",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"initiatorId\": {{userId1}},\n  \"type\": \"video\",\n  \"callType\": \"direct\",\n  \"recipientId\": {{userId2}}\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/calls/initiate",
+              "host": ["{{baseUrl}}"],
+              "path": ["calls", "initiate"]
+            }
+          }
+        },
+        {
+          "name": "Initiate Group Call",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"initiatorId\": {{userId1}},\n  \"type\": \"video\",\n  \"callType\": \"group\",\n  \"groupChatId\": {{groupId}}\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/calls/initiate",
+              "host": ["{{baseUrl}}"],
+              "path": ["calls", "initiate"]
+            }
+          }
+        },
+        {
+          "name": "Join Call",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": {{userId2}}\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/calls/{{callId}}/join",
+              "host": ["{{baseUrl}}"],
+              "path": ["calls", "{{callId}}", "join"]
+            }
+          }
+        },
+        {
+          "name": "Get Call Token",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/calls/{{callId}}/token?userId={{userId1}}&userName=Alice",
+              "host": ["{{baseUrl}}"],
+              "path": ["calls", "{{callId}}", "token"],
+              "query": [
+                {
+                  "key": "userId",
+                  "value": "{{userId1}}"
+                },
+                {
+                  "key": "userName",
+                  "value": "Alice"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "End Call",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "{{baseUrl}}/calls/{{callId}}/end",
+              "host": ["{{baseUrl}}"],
+              "path": ["calls", "{{callId}}", "end"]
+            }
+          }
+        },
+        {
+          "name": "Get Call History",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/calls/history?userId={{userId1}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["calls", "history"],
+              "query": [
+                {
+                  "key": "userId",
+                  "value": "{{userId1}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Active Call",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/calls/active?userId={{userId1}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["calls", "active"],
+              "query": [
+                {
+                  "key": "userId",
+                  "value": "{{userId1}}"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

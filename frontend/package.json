@@ -1,0 +1,60 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "dev:party": "partykit dev",
+    "deploy:party": "partykit deploy",
+    "deploy": "pnpm pages:build && npx wrangler pages deploy .vercel/output/static --project-name optimus",
+    "build": "next build",
+    "pages:build": "npx @cloudflare/next-on-pages",
+    "start": "next start",
+    "lint": "biome check",
+    "format": "biome format --write",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "@livekit/components-react": "^2.9.19",
+    "@livekit/components-styles": "^1.2.0",
+    "@monaco-editor/react": "^4.7.0",
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.5.0",
+    "@types/animejs": "^3.1.13",
+    "@types/three": "^0.182.0",
+    "anime": "^0.1.2",
+    "animejs": "^4.3.5",
+    "clsx": "^2.1.1",
+    "dotenv": "^17.2.3",
+    "firebase": "^12.8.0",
+    "leva": "^0.10.1",
+    "livekit-client": "^2.17.0",
+    "lucide-react": "^0.563.0",
+    "next": "16.1.6",
+    "partykit": "^0.0.115",
+    "partysocket": "^1.1.10",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "tailwind-merge": "^3.4.0",
+    "three": "^0.182.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.2.0",
+    "@cloudflare/next-on-pages": "^1.13.16",
+    "@commitlint/cli": "^20.3.1",
+    "@commitlint/config-conventional": "^20.3.1",
+    "@tailwindcss/postcss": "^4.1.18",
+    "@types/node": "^20.19.30",
+    "@types/react": "^19.2.10",
+    "@types/react-dom": "^19.2.3",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
+    "tailwindcss": "^4.1.18",
+    "typescript": "^5.9.3"
+  },
+  "lint-staged": {
+    "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}": [
+      "biome check --write --no-errors-on-unmatched"
+    ]
+  }
+}

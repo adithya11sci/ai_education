@@ -1,0 +1,295 @@
+@import "tailwindcss";
+
+:root {
+  --background: #050505;
+  --foreground: #ededed;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom Scroll Animations */
+.scroll-anim {
+  transition:
+    opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-anim.visible {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* 3D Utilities */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* ===== LiveKit Video Call Overrides ===== */
+
+/* Prevent layout shifts and flickering */
+[data-lk-theme="default"] {
+  --lk-bg: #202124;
+  --lk-bg2: #3c4043;
+  --lk-control-bg: transparent;
+  --lk-control-hover-bg: rgba(255, 255, 255, 0.1);
+  --lk-fg: #fff;
+  --lk-border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Stable video tiles - prevent flickering */
+.lk-participant-tile {
+  contain: layout style paint;
+  aspect-ratio: 16 / 9;
+  background: #3c4043;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: none !important;
+}
+
+.lk-participant-tile video {
+  object-fit: cover !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Grid layout stability */
+.lk-grid-layout {
+  gap: 12px !important;
+  padding: 8px !important;
+}
+
+/* Control bar styling */
+.lk-control-bar {
+  background: transparent !important;
+  border: none !important;
+  gap: 8px !important;
+}
+
+.lk-button {
+  background: #3c4043 !important;
+  border: none !important;
+  border-radius: 9999px !important;
+  width: 48px !important;
+  height: 48px !important;
+  transition: background-color 0.2s, transform 0.1s !important;
+}
+
+.lk-button:hover {
+  background: #5f6368 !important;
+  transform: scale(1.05);
+}
+
+.lk-button[data-lk-muted="true"],
+.lk-button[aria-pressed="false"] {
+  background: #ea4335 !important;
+}
+
+.lk-button svg {
+  width: 20px !important;
+  height: 20px !important;
+}
+
+/* Participant name styling */
+.lk-participant-name {
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  padding: 6px 12px !important;
+  background: rgba(0, 0, 0, 0.6) !important;
+  border-radius: 4px !important;
+}
+
+/* Speaking indicator */
+.lk-participant-tile[data-lk-speaking="true"] {
+  box-shadow: 0 0 0 3px #34a853 !important;
+}
+
+/* Focus layout for screen sharing */
+.lk-focus-layout {
+  gap: 12px !important;
+}
+
+.lk-focus-layout-container {
+  background: #202124 !important;
+}
+
+/* Connection toast */
+.lk-toast {
+  background: #3c4043 !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Disable unwanted animations that cause flicker */
+.lk-participant-tile,
+.lk-participant-tile * {
+  animation-duration: 0s !important;
+  animation-delay: 0s !important;
+}
+
+/* Smooth video appearance */
+.lk-participant-tile video {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.lk-participant-tile video[poster] {
+  opacity: 0;
+}
+
+/* Slide-in animation for sidebars */
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-in.slide-in-from-right {
+  animation: slideInFromRight 0.2s ease-out forwards;
+}
+
+/* Video call button refinements */
+.lk-button.lk-button-menu {
+  width: auto !important;
+  padding: 0 12px !important;
+}
+
+/* Hide default LiveKit participant info - we use our own */
+.lk-participant-tile .lk-participant-metadata {
+  opacity: 0 !important;
+}
+
+/* Better muted indicator colors */
+.lk-button[data-lk-source="microphone"][data-lk-enabled="false"],
+.lk-button[data-lk-source="camera"][data-lk-enabled="false"] {
+  background: #ea4335 !important;
+}
+
+/* Screen share button active state */
+.lk-button[data-lk-source="screen_share"][data-lk-enabled="true"] {
+  background: #34a853 !important;
+}
+
+/* Video call loading states */
+.lk-room-container {
+  background: #202124 !important;
+}
+
+/* Ensure videos fill their containers properly */
+.lk-video-container {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.lk-video-container video {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+/* ===== Hide LiveKit Dropdown Menus (causing flicker) ===== */
+
+/* Hide all dropdown menus */
+.lk-button-group-menu,
+.lk-device-menu,
+[data-radix-popper-content-wrapper],
+.lk-dropdown-menu,
+[role="menu"],
+[role="listbox"],
+.lk-list {
+  display: none !important;
+}
+
+/* Hide menu arrows/indicators */
+.lk-button svg[data-testid="dropdown-arrow"],
+.lk-button-group>button:last-child {
+  display: none !important;
+}
+
+/* Make buttons not open menus */
+.lk-button-group {
+  pointer-events: auto;
+}
+
+.lk-button-group>.lk-button {
+  border-radius: 50% !important;
+}
+
+/* Hide the device selector that pops up */
+.lk-device-menu,
+.lk-menu-container,
+[class*="DeviceMenu"],
+[class*="device-menu"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Fix button group styling */
+.lk-control-bar button {
+  border-radius: 50% !important;
+  width: 48px !important;
+  height: 48px !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Disable ALL animations */
+.lk-participant-tile,
+.lk-participant-tile *,
+.lk-control-bar,
+.lk-control-bar *,
+.lk-button,
+[data-lk-theme] * {
+  animation: none !important;
+  transition: none !important;
+}
+
+/* Only allow hover color transition */
+.lk-button {
+  transition: background-color 0.15s ease !important;
+}

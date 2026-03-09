@@ -1,0 +1,11 @@
+name = "optimus"
+compatibility_date = "2024-04-01"
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = ".vercel/output/static"
+
+[vars]
+NEXT_PUBLIC_API_URL = "https://optimus-be.kodliebe.me"
+NEXT_PUBLIC_FRONTEND_URL = "https://optimus.kodliebe.me"
+NEXT_PUBLIC_PARTYKIT_HOST = "optimus-party.ajaybalajiprasad.partykit.dev"
+NEXT_PUBLIC_LIVEKIT_URL = "wss://audiovideo-fqutjw7i.livekit.cloud"
+
