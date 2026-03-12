@@ -36,8 +36,9 @@ interface ChatContextType {
   setCameraZoomed: (zoomed: boolean) => void;
 }
 
-const BACKEND_URL =
-  process.env.NEXT_PUBLIC_INTERVIEW_BACKEND_URL || "http://localhost:3001";
+const API_URL =
+  process.env.NEXT_PUBLIC_API_URL || "http://localhost:8787";
+const BACKEND_URL = `${API_URL}/interview`;
 
 const ChatContext = createContext<ChatContextType | null>(null);
 

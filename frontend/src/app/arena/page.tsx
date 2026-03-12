@@ -21,8 +21,9 @@ import {
   Zap,
 } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Sidebar } from "@/components/Sidebar";
+import { getChallenges, getLeaderboard } from "@/lib/api";
 
 // Types
 interface Problem {
@@ -63,6 +64,31 @@ export default function ArenaPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedDifficulty, setSelectedDifficulty] = useState<string>("all");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  const [apiChallenges, setApiChallenges] = useState<any[] | null>(null);
+  const [apiLeaderboard, setApiLeaderboard] = useState<any[] | null>(null);
+
+  // Fetch challenges and leaderboard from API with fallback to mock data
+  useEffect(() => {
+    getChallenges()
+      .then((data) => {
+        if (data.challenges && data.challenges.length > 0) {
+          setApiChallenges(data.challenges);
+        }
+      })
+      .catch(() => {
+        // Silently fallback to mock data
+      });
+
+    getLeaderboard()
+      .then((data) => {
+        if (data.leaderboard && data.leaderboard.length > 0) {
+          setApiLeaderboard(data.leaderboard);
+        }
+      })
+      .catch(() => {
+        // Silently fallback to mock data
+      });
+  }, []);
 
   // Sample problems data - in real app, fetch from API
   const problems: Problem[] = [
@@ -334,11 +360,10 @@ export default function ArenaPage() {
             <button
               type="button"
               onClick={() => setActiveTab("problems")}
-              className={`flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-md text-xs sm:text-sm font-medium transition-all ${
-                activeTab === "problems"
+              className={`flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-md text-xs sm:text-sm font-medium transition-all ${activeTab === "problems"
                   ? "bg-green-500 text-black"
                   : "text-gray-400 hover:text-white"
-              }`}
+                }`}
             >
               <Code className="w-4 h-4" />
               <span className="hidden sm:inline">Problems</span>
@@ -346,11 +371,10 @@ export default function ArenaPage() {
             <button
               type="button"
               onClick={() => setActiveTab("quizzes")}
-              className={`flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-md text-xs sm:text-sm font-medium transition-all ${
-                activeTab === "quizzes"
+              className={`flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-md text-xs sm:text-sm font-medium transition-all ${activeTab === "quizzes"
                   ? "bg-green-500 text-black"
                   : "text-gray-400 hover:text-white"
-              }`}
+                }`}
             >
               <FileQuestion className="w-4 h-4" />
               <span className="hidden sm:inline">Quizzes</span>
@@ -358,11 +382,10 @@ export default function ArenaPage() {
             <button
               type="button"
               onClick={() => setActiveTab("leaderboard")}
-              className={`flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-md text-xs sm:text-sm font-medium transition-all ${
-                activeTab === "leaderboard"
+              className={`flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-md text-xs sm:text-sm font-medium transition-all ${activeTab === "leaderboard"
                   ? "bg-gradient-to-r from-orange-500 to-yellow-500 text-black"
                   : "text-gray-400 hover:text-white"
-              }`}
+                }`}
             >
               <Trophy className="w-4 h-4" />
               <span className="hidden sm:inline">Leaderboard</span>
@@ -483,13 +506,12 @@ export default function ArenaPage() {
                     </div>
                     <div className="col-span-2">
                       <span
-                        className={`px-2 py-0.5 rounded text-xs font-medium ${
-                          problem.difficulty === "easy"
+                        className={`px-2 py-0.5 rounded text-xs font-medium ${problem.difficulty === "easy"
                             ? "bg-green-500/20 text-green-400"
                             : problem.difficulty === "medium"
                               ? "bg-yellow-500/20 text-yellow-400"
                               : "bg-red-500/20 text-red-400"
-                        }`}
+                          }`}
                       >
                         {problem.difficulty}
                       </span>
@@ -543,27 +565,24 @@ export default function ArenaPage() {
                   <Link
                     key={quiz.id}
                     href={`/arena/quiz/${quiz.id}`}
-                    className={`p-4 rounded-xl border transition-all ${
-                      quiz.completed
+                    className={`p-4 rounded-xl border transition-all ${quiz.completed
                         ? "bg-[#0a0a0c] border-green-500/20 hover:border-green-500/40"
                         : "bg-[#0a0a0c] border-white/5 hover:border-orange-500/30"
-                    }`}
+                      }`}
                   >
                     <div className="flex items-start justify-between mb-3">
                       <div className="flex items-center gap-2">
                         <div
-                          className={`p-2 rounded-lg ${
-                            quiz.completed
+                          className={`p-2 rounded-lg ${quiz.completed
                               ? "bg-green-500/20"
                               : "bg-orange-500/20"
-                          }`}
+                            }`}
                         >
                           <FileQuestion
-                            className={`w-5 h-5 ${
-                              quiz.completed
+                            className={`w-5 h-5 ${quiz.completed
                                 ? "text-green-400"
                                 : "text-orange-400"
-                            }`}
+                              }`}
                           />
                         </div>
                         <span className="px-2 py-0.5 bg-white/5 rounded text-xs text-gray-400">
@@ -763,24 +782,22 @@ export default function ArenaPage() {
                   {leaderboard.map((user, index) => (
                     <div
                       key={user.rank}
-                      className={`grid grid-cols-12 gap-4 px-4 sm:px-6 py-4 transition-colors ${
-                        user.rank <= 3
+                      className={`grid grid-cols-12 gap-4 px-4 sm:px-6 py-4 transition-colors ${user.rank <= 3
                           ? "bg-gradient-to-r from-orange-500/5 to-transparent hover:from-orange-500/10"
                           : "hover:bg-white/5"
-                      }`}
+                        }`}
                     >
                       {/* Rank */}
                       <div className="col-span-2 sm:col-span-1 flex items-center">
                         <div
-                          className={`w-8 h-8 rounded-lg flex items-center justify-center font-bold text-sm ${
-                            user.rank === 1
+                          className={`w-8 h-8 rounded-lg flex items-center justify-center font-bold text-sm ${user.rank === 1
                               ? "bg-gradient-to-br from-orange-500 to-yellow-500 text-black"
                               : user.rank === 2
                                 ? "bg-gradient-to-br from-gray-400 to-gray-600 text-white"
                                 : user.rank === 3
                                   ? "bg-gradient-to-br from-orange-700 to-orange-900 text-white"
                                   : "bg-white/5 text-gray-400"
-                          }`}
+                            }`}
                         >
                           {user.badge || user.rank}
                         </div>

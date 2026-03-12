@@ -305,3 +305,37 @@ export async function getGroupMembers(c: Context<{ Bindings: Env }>) {
     return c.json({ error: "Failed to fetch group members" }, 500);
   }
 }
+
+/**
+ * Get all groups for a user
+ */
+export async function getGroupsByUser(c: Context<{ Bindings: Env }>) {
+  const db = getDb(c.env.DATABASE_URL);
+  const userId = c.req.param("userId");
+
+  try {
+    const userGroups = await db
+      .select({
+        id: groupChats.id,
+        name: groupChats.name,
+        description: groupChats.description,
+        createdBy: groupChats.createdBy,
+        avatarUrl: groupChats.avatarUrl,
+        createdAt: groupChats.createdAt,
+        updatedAt: groupChats.updatedAt,
+      })
+      .from(groupMembers)
+      .innerJoin(groupChats, eq(groupMembers.groupChatId, groupChats.id))
+      .where(
+        and(
+          eq(groupMembers.userId, Number.parseInt(userId)),
+          isNull(groupMembers.leftAt),
+        ),
+      );
+
+    return c.json(userGroups);
+  } catch (error) {
+    console.error("Error fetching user groups:", error);
+    return c.json({ error: "Failed to fetch user groups" }, 500);
+  }
+}

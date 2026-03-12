@@ -1,0 +1,21 @@
+# Backend Environment Variables (Cloudflare Workers Secrets)
+# Copy this file to .dev.vars and fill in your values
+# These are used by `wrangler dev` for local development
+
+# Neon Postgres Database URL
+DATABASE_URL=postgresql://user:password@your-neon-host.neon.tech/dbname?sslmode=require
+
+# Google OAuth Credentials (from Google Cloud Console)
+GOOGLE_CLIENT_ID=your-google-client-id.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=your-google-client-secret
+
+# LiveKit Credentials (from LiveKit Cloud dashboard)
+LIVEKIT_API_KEY=your-livekit-api-key
+LIVEKIT_API_SECRET=your-livekit-api-secret
+
+# Groq AI (for interview feature - get key from https://console.groq.com)
+GROQ_API_KEY=your-groq-api-key
+
+# Interview AI Model (optional - defaults to llama-3.3-70b-versatile)
+# Available: llama-3.3-70b-versatile, llama-3.1-8b-instant, mixtral-8x7b-32768, gemma2-9b-it
+INTERVIEW_MODEL=llama-3.3-70b-versatile

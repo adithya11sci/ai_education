@@ -1,2 +1,13 @@
 Ai_powerd_eduator_backup
 .git
+
+# Environment secrets
+backend/.dev.vars
+frontend/.env.local
+
+# Raw 3D model source files
+95-rp_mei_posed_001_c4d/
+
+# Dependencies
+node_modules/
+

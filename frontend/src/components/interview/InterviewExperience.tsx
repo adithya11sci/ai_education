@@ -39,7 +39,7 @@ export function InterviewExperience() {
   // Initial camera setup
   useEffect(() => {
     if (cameraControls.current) {
-      cameraControls.current.setLookAt(0, 2, 5, 0, 1.5, 0);
+      cameraControls.current.setLookAt(0, 1.2, 5, 0, 0.8, 0);
     }
   }, []);
 
@@ -48,9 +48,9 @@ export function InterviewExperience() {
     if (!cameraControls.current) return;
 
     if (cameraZoomed) {
-      cameraControls.current.setLookAt(0, 1.5, 1.5, 0, 1.5, 0, true);
+      cameraControls.current.setLookAt(0, 1.2, 2, 0, 1.0, 0, true);
     } else {
-      cameraControls.current.setLookAt(0, 2.2, 5, 0, 1.0, 0, true);
+      cameraControls.current.setLookAt(0, 1.2, 5, 0, 0.8, 0, true);
     }
   }, [cameraZoomed]);
 

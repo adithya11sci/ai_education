@@ -5,6 +5,7 @@ import {
   deleteGroupChat,
   getGroupChat,
   getGroupMembers,
+  getGroupsByUser,
   leaveGroup,
   removeMember,
   updateGroupChat,
@@ -13,6 +14,9 @@ import {
 import type { Env } from "../types/index";
 
 const app = new Hono<{ Bindings: Env }>();
+
+// Get groups by user
+app.get("/user/:userId", getGroupsByUser);
 
 // Create group chat
 app.post("/", createGroupChat);

@@ -4,6 +4,7 @@ import authRoutes from "./routes/auth";
 import callRoutes from "./routes/calls";
 import contentRoutes from "./routes/content";
 import groupChatRoutes from "./routes/groupChats";
+import interviewRoutes from "./routes/interview";
 import learningRoutes from "./routes/learning";
 import livekitRoutes from "./routes/livekit";
 import messageRoutes from "./routes/messages";
@@ -40,6 +41,7 @@ app.get("/", (c) => {
     endpoints: {
       auth: "/auth",
       users: "/users",
+      interview: "/interview",
       learning: "/learning",
       notes: "/notes",
       content: "/content",
@@ -55,6 +57,7 @@ app.get("/", (c) => {
 // Register routes
 app.route("/auth", authRoutes);
 app.route("/users", userRoutes);
+app.route("/interview", interviewRoutes);
 app.route("/learning", learningRoutes);
 app.route("/notes", notesRoutes);
 app.route("/content", contentRoutes);
