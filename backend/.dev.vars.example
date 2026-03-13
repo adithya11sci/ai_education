@@ -13,8 +13,8 @@ GOOGLE_CLIENT_SECRET=your-google-client-secret
 LIVEKIT_API_KEY=your-livekit-api-key
 LIVEKIT_API_SECRET=your-livekit-api-secret
 
-# Groq AI (for interview feature - get key from https://console.groq.com)
-GROQ_API_KEY=your-groq-api-key
+# Gemini AI (for interview feature - get key from https://aistudio.google.com)
+GEMINI_API_KEY=your-gemini-api-key
 
 # Interview AI Model (optional - defaults to llama-3.3-70b-versatile)
 # Available: llama-3.3-70b-versatile, llama-3.1-8b-instant, mixtral-8x7b-32768, gemma2-9b-it
